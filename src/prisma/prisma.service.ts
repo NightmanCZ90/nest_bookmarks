@@ -14,6 +14,13 @@ export class PrismaService extends PrismaClient implements OnModuleInit {
     });
   }
 
+  cleanDb() {
+    return this.$transaction([
+      this.bookmark.deleteMany(),
+      this.user.deleteMany(),
+    ]);
+  }
+
   async onModuleInit() {
     await this.$connect();
   }
